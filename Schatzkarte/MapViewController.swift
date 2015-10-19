@@ -59,43 +59,35 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, RMMapViewD
     @IBAction func pressedSetMarker(sender: AnyObject)
     {
         
+        let alertController = UIAlertController(title: "Marker hinzufügen", message: "Bitte hier die Koordinaten eintragen:", preferredStyle: .Alert)
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
+            
+        }
+        alertController.addAction(cancelAction)
+        
+        let submitAction = UIAlertAction(title: "Submit", style: .Default) { (action) in
+            if let latitude = alertController.textFields![0].text, longitude = alertController.textFields![1].text{
+                let Latitude: Double = (latitude as NSString).doubleValue
+                let Longitude: Double = (longitude as NSString).doubleValue
+                self.setMarker(Latitude, longitude: Longitude, load: true)
+            }
+        }
+        alertController.addAction(submitAction)
+        
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Latitude"
+            textField.keyboardType = UIKeyboardType.DecimalPad
+        }
+        
+        alertController.addTextFieldWithConfigurationHandler { (textField) in
+            textField.placeholder = "Longitude"
+            textField.keyboardType = UIKeyboardType.DecimalPad
+        }
+        
+        self.presentViewController(alertController, animated: true, completion: nil)
 
-        var alertController:UIAlertController?
-        alertController = UIAlertController(title: "Marker hinzufügen",
-            message: "Bitte hier die Koordinaten eintragen:",
-            preferredStyle: .Alert)
-        
-        alertController!.addTextFieldWithConfigurationHandler(
-            {(textField: UITextField!) in
-                textField.placeholder = "Latitude"
-                textField.keyboardType = UIKeyboardType.DecimalPad
-        })
-        alertController!.addTextFieldWithConfigurationHandler(
-            {(textField: UITextField!) in
-                textField.placeholder = "Longitude"
-                textField.keyboardType = UIKeyboardType.DecimalPad
-        })
-        
-        let action = UIAlertAction(title: "Submit",
-            style: UIAlertActionStyle.Default,
-            handler: {
-                (paramAction:UIAlertAction!) in
-                if let textFields = alertController?.textFields{
-                    let theTextFields = textFields as [UITextField]
-                    
-                    if let latitude = theTextFields[0].text, longitude = theTextFields[1].text{
-                        let Latitude: Double = (latitude as NSString).doubleValue
-                        let Longitude: Double = (longitude as NSString).doubleValue
-                        self.setMarker(Latitude, longitude: Longitude, load: true)
-                    }
-                    
-                }
-            })
-        
-        alertController?.addAction(action)
-        self.presentViewController(alertController!,
-            animated: true,
-            completion: nil)
     
     }
     
