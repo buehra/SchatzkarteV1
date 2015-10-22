@@ -23,20 +23,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, RMMapViewD
         self.locationManager.delegate = self
         self.locationManager.desiredAccuracy = kCLLocationAccuracyBest
         self.locationManager.requestWhenInUseAuthorization()
-        self.locationManager.startUpdatingLocation()
-        
-        
     }
     
     override func viewDidAppear(animated: Bool) {
         super.viewDidAppear(animated)
-
 
         let tileSource: RMMapboxSource = RMMapboxSource(mapID: kMapID)
         mapView = RMMapView(frame: view.bounds, andTilesource: tileSource)
         mapView.zoom = 17
         mapView.userTrackingMode = RMUserTrackingModeFollow
         mapView.delegate = self
+        mapView.autoresizingMask = [UIViewAutoresizing.FlexibleHeight, UIViewAutoresizing.FlexibleWidth]
         self.view.addSubview(mapView)
         
         setSavedMarkers()
@@ -47,23 +44,17 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, RMMapViewD
         
         listCoordination = defaults.objectForKey("SavedMarkers") as? [Double] ?? [Double]()
         
-        
         for var index = 0; index < listCoordination.count; ++index {
             setMarker(listCoordination[index], longitude: listCoordination[++index], load: false)
         }
-        
-    
     }
     
     
-    @IBAction func pressedSetMarker(sender: AnyObject)
-    {
+    @IBAction func pressedSetMarker(sender: AnyObject){
         
         let alertController = UIAlertController(title: "Marker hinzufügen", message: "Bitte hier die Koordinaten eintragen:", preferredStyle: .Alert)
         
-        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in
-            
-        }
+        let cancelAction = UIAlertAction(title: "Cancel", style: .Cancel) { (action) in}
         alertController.addAction(cancelAction)
         
         let submitAction = UIAlertAction(title: "Submit", style: .Default) { (action) in
@@ -75,15 +66,14 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, RMMapViewD
         }
         alertController.addAction(submitAction)
         
-        
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Latitude"
-            textField.keyboardType = UIKeyboardType.DecimalPad
+            textField.keyboardType = UIKeyboardType.Default
         }
         
         alertController.addTextFieldWithConfigurationHandler { (textField) in
             textField.placeholder = "Longitude"
-            textField.keyboardType = UIKeyboardType.DecimalPad
+            textField.keyboardType = UIKeyboardType.Default
         }
         
         self.presentViewController(alertController, animated: true, completion: nil)
@@ -94,51 +84,66 @@ class MapViewController: UIViewController, CLLocationManagerDelegate, RMMapViewD
     func setMarker(latitude: Double, longitude: Double, load: Bool){
         
         let cordination = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
-    
         
-        if load{
+        if CLLocationCoordinate2DIsValid(cordination){
+        
+            if load{
+                listCoordination.append(latitude)
+                listCoordination.append(longitude)
+                
+                saveXML()
+            }
             
-            listCoordination.append(latitude)
-            listCoordination.append(longitude)
-            
-            saveXML()
-            
+            let annotation: RMPointAnnotation = RMPointAnnotation(mapView: mapView, coordinate: cordination, andTitle: "Posten")
+            mapView.addAnnotation(annotation)
+        }else{
+            debugPrint("Koordinaten sind nicht korrekt!")
         }
-        
-        let annotation: RMPointAnnotation = RMPointAnnotation(mapView: mapView, coordinate: cordination, andTitle: "Posten")
-        mapView.addAnnotation(annotation)
         
     }
     
     func saveXML(){
-    
+        
         defaults.setObject(listCoordination, forKey: "SavedMarkers")
         defaults.synchronize()
-        
     }
 
     @IBAction func pressedLogSolution(sender: AnyObject) {
         
-        var json = [String:String]()
+        var json = [String: AnyObject]()
         json["task"] = "Schatzkarte"
         let solutionLogger = SolutionLogger(viewController: self)
-        
-        let test = listCoordination
-        
-        json["points"] = test.description
-        
-        
+        json["points"] = getJsonArray()
         let solutionStr = solutionLogger.JSONStringify(json)
         solutionLogger.logSolution(solutionStr)
     }
     
+    func getJsonArray() -> NSArray{
+        
+        var JsonArray = [AnyObject]()
+        for  var index = 0; index < listCoordination.count; ++index{
+            let JsonDict = ["lat": getJsonCoordinate(listCoordination[index]), "lon": getJsonCoordinate(listCoordination[++index])]
+            JsonArray.append(JsonDict)
+        }
+        
+        return JsonArray
+    }
+    
+    func getJsonCoordinate(value: Double) ->Int{
+        
+        return Int(value * pow(10, 6))
+    }
     
     @IBAction func pressedLocation(sender: AnyObject) {
+        
+        self.locationManager.startUpdatingLocation()
         
         let coordination = CLLocationCoordinate2D(latitude: (locationManager.location?.coordinate.latitude)!, longitude: (locationManager.location?.coordinate.longitude)!)
         
         mapView.centerCoordinate = coordination;
         mapView.zoom = 17
+        
+        self.locationManager.stopUpdatingLocation()
     }
     
     @IBAction func pressedHSRLocation(sender: AnyObject) {

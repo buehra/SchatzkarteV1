@@ -26,28 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schatzkarte/MapViewController.swift"
-            timestampString = "466973218.316332"
+            timestampString = "467198659.361497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "152"
-            endingLineNumber = "152"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
             landmarkName = "pressedDeleteMarkers(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Schatzkarte/MapViewController.swift"
-            timestampString = "466973218.316332"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "128"
-            endingLineNumber = "128"
-            landmarkName = "pressedLogSolution(_:)"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -58,11 +42,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schatzkarte/MapViewController.swift"
-            timestampString = "466973218.316332"
+            timestampString = "467198659.361497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "97"
-            endingLineNumber = "97"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "setMarker(_:longitude:load:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -74,11 +58,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schatzkarte/MapViewController.swift"
-            timestampString = "466970646.981243"
+            timestampString = "467198659.361497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "47"
-            endingLineNumber = "47"
+            startingLineNumber = "44"
+            endingLineNumber = "44"
             landmarkName = "setSavedMarkers()"
             landmarkType = "5">
          </BreakpointContent>
@@ -90,27 +74,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schatzkarte/MapViewController.swift"
-            timestampString = "466973218.316332"
+            timestampString = "467198659.361497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "129"
-            endingLineNumber = "129"
-            landmarkName = "pressedLogSolution(_:)"
-            landmarkType = "5">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "Schatzkarte/MapViewController.swift"
-            timestampString = "466970639.918615"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
+            startingLineNumber = "48"
+            endingLineNumber = "48"
             landmarkName = "setSavedMarkers()"
             landmarkType = "5">
          </BreakpointContent>
@@ -122,11 +90,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schatzkarte/MapViewController.swift"
-            timestampString = "466973180.203762"
+            timestampString = "467198659.361497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
             landmarkName = "pressedSetMarker(_:)"
             landmarkType = "5">
          </BreakpointContent>
@@ -138,11 +106,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "Schatzkarte/MapViewController.swift"
-            timestampString = "466973313.801508"
+            timestampString = "467198659.361497"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "96"
-            endingLineNumber = "96"
+            startingLineNumber = "87"
+            endingLineNumber = "87"
             landmarkName = "setMarker(_:longitude:load:)"
             landmarkType = "5">
          </BreakpointContent>

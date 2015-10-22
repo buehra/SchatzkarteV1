@@ -24,12 +24,12 @@
                                 <action selector="pressedHSRLocation:" destination="BYZ-38-t0r" id="AB9-X3-TKe"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="Delete Markers" width="150" id="bcT-xS-srH">
+                        <barButtonItem title="Delete Markers" width="271" id="bcT-xS-srH">
                             <connections>
                                 <action selector="pressedDeleteMarkers:" destination="BYZ-38-t0r" id="Fma-j9-c3B"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem title="ME" width="150" id="kIb-Hh-DCx">
+                        <barButtonItem title="Me" id="kIb-Hh-DCx">
                             <connections>
                                 <action selector="pressedLocation:" destination="BYZ-38-t0r" id="pdl-Xz-Jgi"/>
                             </connections>
